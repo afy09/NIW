@@ -18,7 +18,7 @@ const HeroUdin: React.FC<NavbarProps> = ({ handleMenuClick }) => {
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full px-4 text-center mt-6">
         <div className="flex justify-center mb-4">
-          <img src="/images/NIW.png" className="w-48 h-28 " alt="" />
+          <img src="/images/niw.svg" className="w-48 h-28 " alt="" />
         </div>
         <h1 className="text-[29px] md:text-6xl  font-bold max-w-4xl  ">
           NATIONAL <span className="text-[#144470]">INDUSTRIAL</span>

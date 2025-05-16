@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, isMenuOpen, handleMenuClic
       }`}>
       {/* Logo & Brand */}
       <div className="flex items-center gap-2">
-        <img src="/images/NIW.png" alt="Logo" className="w-32 h-16" />
+        <img src="/images/niw.svg" alt="Logo" className="w-32 h-16" />
       </div>
 
       {/* Desktop Menu */}
