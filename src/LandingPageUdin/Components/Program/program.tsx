@@ -52,7 +52,7 @@ const data = [
     title: "Job Fair",
     desc: "Membuat job fair bagi pekerja yang terkena dampak PHK.",
     icon: "/logo/news.png",
-    image: "/images/program7.jpg",
+    image: "/images/isu2.jpg",
   },
 ];
 
