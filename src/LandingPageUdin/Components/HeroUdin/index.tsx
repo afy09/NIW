@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface NavbarProps {
   handleMenuClick: (page: string) => void;
@@ -30,9 +31,9 @@ const HeroUdin: React.FC<NavbarProps> = ({ handleMenuClick }) => {
           <span className="absolute inline-flex h-full w-full rounded-full bg-[#cfa84d] opacity-75 animate-pulseRing"></span>
 
           {/* Actual Button */}
-          <button onClick={() => alert("Daftar Sekarang")} className="relative bg-[#cfa84d] hover:bg-opacity-90 text-white hover:text-white font-semibold text-lg py-3 px-8 rounded-full z-10">
-            Ajukan Pengaduan
-          </button>
+          <Link to="/pengaduan">
+            <button className="relative bg-[#cfa84d] hover:bg-opacity-90 text-white hover:text-white font-semibold text-lg py-3 px-8 rounded-full z-10">Ajukan Pengaduan</button>
+          </Link>
         </div>
       </div>
     </section>
