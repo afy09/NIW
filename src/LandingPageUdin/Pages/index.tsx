@@ -11,6 +11,7 @@ import Satuan from "../Components/About/Satuan";
 import JenisGerai from "../Components/JenisGerai";
 import Struktur from "../Components/Struktur/strukturtwo";
 import ProgramKerja from "../Components/Program/program";
+import Editorial from "../Components/Editorial/editorial";
 
 const HEADER_HEIGHT = 96;
 const LandingPageUdin: React.FC = () => {
@@ -109,6 +110,10 @@ const LandingPageUdin: React.FC = () => {
             </div>
             <div ref={programRef}>
               <ProgramKerja />
+            </div>
+
+            <div ref={programRef}>
+              <Editorial />
             </div>
 
             <Footer handleMenuClick={handleMenuClick} />

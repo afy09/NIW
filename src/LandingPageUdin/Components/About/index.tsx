@@ -52,7 +52,7 @@ const About: React.FC = () => {
           <div className="flex gap-2 items-start mt-4">
             {/* <div className="rounded-full  bg-[#144470] text-[#cfa84d] px-3 py-1">1</div> */}
 
-            <p className="lg:text-[18px]  text-[14px]  text-justify ">
+            <p className="lg:text-[18px]  text-[14px] text-left  lg:text-justify ">
               <span className="rounded-full  bg-[#144470] text-[#cfa84d] px-3 py-1 lg:text-[18px]  text-[18px] me-3 mb-3">1</span>
               National Industrial Watch (NIW) merupakan lembaga kajian, riset, advokasi dan konsultasi yang memfokuskan pada paradigma civil society dengan focus pada pekerja atau tenaga kerja. NCW didirikan dengan maksud merespons
               perkembangan kontemporer di Indonesia ditengah industrialisasi, modernisasi dan digitalisasi dimana peran pekerja atau tenaga kerja secara massif mulai terpingirkan khususnya dalam konteks kontribusinya mengelola sumber daya,
@@ -61,7 +61,7 @@ const About: React.FC = () => {
           </div>
 
           <div className="flex gap-2 items-start mt-4">
-            <p className="lg:text-[18px]  text-[14px]  text-justify ">
+            <p className="lg:text-[18px]  text-[14px]  text-left  lg:text-justify">
               <span className="rounded-full  bg-[#144470] text-[#cfa84d] px-3 py-1 lg:text-[18px]  text-[18px] me-3 mb-3">2</span>
               NIW ini digunakan sebagai sebuah perspektif/pendekatan di dalam membedah problem sosial, ekonomi, politik, regulasi dan lain sebagainya menyangkut dengan hak-hak pekerja atau tenaga kerja sehingga terbangun hubungan industrial
               yang sehat dan membangun.
@@ -69,7 +69,7 @@ const About: React.FC = () => {
           </div>
 
           <div className="flex gap-2 items-start mt-4">
-            <p className="lg:text-[18px]  text-[14px]  text-justify ">
+            <p className="lg:text-[18px]  text-[14px]  text-left  lg:text-justify ">
               <span className="rounded-full  bg-[#144470] text-[#cfa84d] px-3 py-1 lg:text-[18px]  text-[18px] me-3 mb-3">3</span>
               NIW adalah lembaga independen yang bekerja secara profesional, netral dan menjalankan kerja-kerja yang bersifat akademik, advokatif, konsultatif, teoritis dan praktis di dalam melayani tuntutan publik akan pentingnya
               perspektif/pendekatan civil society di dalam mencari solusi atas berbagai permasalahan yang ada di Indonesia terkait dengan pekerja atau tenaga kerja.

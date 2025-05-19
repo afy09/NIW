@@ -46,7 +46,7 @@ const VisiMisi = () => {
             <img src="/images/seru.png" alt="" className="w-12 h-12" />
           </div>
 
-          <p className="text-white text-justify mt-5">
+          <p className="text-white text-left  lg:text-justify mt-5">
             Terlibat secara aktif dalam mengembangkan, memberdayaan dan memperjuangkan kepentingan-kepentingan pekerja atau tenaga kerja sehingga tercipta hubungan industrial yang sehat dan membangun, termasuk didalam nya adalah mendorong
             keterlibatan pekerja atau tenaga kerja dalam proses legislasi, pembuatan regulasi terkait dan pengelolaan sumber daya negara sebagai bagian dari hak konstitusional pekerja atau tenaga kerja sebagai warga negara.
           </p>
@@ -58,7 +58,7 @@ const VisiMisi = () => {
             <img src="/images/seru.png" alt="" className="w-12 h-12" />
           </div>
 
-          <p className="text-white text-justify mt-5">
+          <p className="text-white text-left  lg:text-justify mt-5">
             - Mendorong penguatan hak-hak pekerja atau tenaga kerja guna terwujudnya hubungan industrial yang sehat dan membangun. <br />
             - Mendorong penguatan partisipasi pekerja atau tenaga kerja dalam proses legislasi, pembuatan regulasi lainnya. <br />
             - Mendorong jaminan keamanan sosial (social security) pekerja atau tenaga kerja sebagai manusia Indonesia dalam berbagai aspek kehidupan dan dalam berbagai konteks lokal, nasional dan global.
