@@ -28,6 +28,14 @@ const data = [
     image: "/images/program3.jpg",
     date: "19-05-2025",
   },
+
+  {
+    title: "Riset Pekerjaan",
+    desc: "Melakukan aktivitas Riset/penelitian yang terkait dengan fenomena sosial, ekonomi, politik dan budaya kontemporer di Indonesia dengan perspektif/pendekatan sector pekerja atau tenaga kerja.",
+    icon: "/logo/news.png",
+    image: "/images/program1.jpg",
+    date: "19-05-2025",
+  },
 ];
 
 const Editorial = () => {
