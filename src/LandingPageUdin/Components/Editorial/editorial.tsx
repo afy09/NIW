@@ -86,7 +86,7 @@ const Editorial = () => {
                         {expanded === index ? "Tutup" : "Selengkapnya →"}
                       </button>
 
-                      <div className="text-[#cfa84d] italic">{item.date}</div>
+                      <div className="text-[#cfa84d] italic">{new Date(item.created_at).toLocaleDateString()}</div>
                     </div>
                   </div>
                 </div>
