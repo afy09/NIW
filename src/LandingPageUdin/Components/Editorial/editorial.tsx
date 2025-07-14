@@ -1,45 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import axios from "axios";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../Program/index.css";
 
-const data = [
-  {
-    title: "Riset Pekerjaan",
-    desc: "Melakukan aktivitas Riset/penelitian yang terkait dengan fenomena sosial, ekonomi, politik dan budaya kontemporer di Indonesia dengan perspektif/pendekatan sector pekerja atau tenaga kerja.",
-    icon: "/logo/news.png",
-    image: "/images/program1.jpg",
-    date: "19-05-2025",
-  },
-
-  {
-    title: "Arahan Kerja",
-    desc: "Melakukan Seminar, Dialog Publik dan Workshop terkait dengan mengarusutamakan pendekatan/perspektif social security.",
-    icon: "/logo/news.png",
-    image: "/images/program2.jpg",
-    date: "19-05-2025",
-  },
-  {
-    title: "Upah & Tunjangan",
-    desc: "Mengembangkan kajian akademik yang bersifat teoritis, praktis dan aplikatif terkait isu-isu sektor pekerja atau tenaga kerja.",
-    icon: "/logo/news.png",
-    image: "/images/program3.jpg",
-    date: "19-05-2025",
-  },
-
-  {
-    title: "Riset Pekerjaan",
-    desc: "Melakukan aktivitas Riset/penelitian yang terkait dengan fenomena sosial, ekonomi, politik dan budaya kontemporer di Indonesia dengan perspektif/pendekatan sector pekerja atau tenaga kerja.",
-    icon: "/logo/news.png",
-    image: "/images/program1.jpg",
-    date: "19-05-2025",
-  },
-];
+type NewsItem = {
+  id: number;
+  title: string;
+  description: string;
+  image_url: string;
+  created_at: string;
+};
 
 const Editorial = () => {
+  const [data, setData] = useState<NewsItem[]>([]);
   const [expanded, setExpanded] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const toggleExpand = (index: number) => {
     setExpanded(expanded === index ? null : index);
@@ -47,8 +25,22 @@ const Editorial = () => {
 
   const truncateText = (text: string, index: number) => {
     if (expanded === index) return text;
-    return text.length > 80 ? text.substring(0, 80) + "..." : text;
+    return text?.length > 80 ? text?.substring(0, 80) + "..." : text;
   };
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_BASE_URL}/api/news`)
+      .then((res) => {
+        setData(res.data.data || []);
+      })
+      .catch((err) => {
+        console.error("Gagal mengambil data news:", err);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div className="p-5">Memuat data editorial...</div>;
 
   return (
     <div className="bg-white py-7 px-5 lg:px-10">
@@ -76,18 +68,18 @@ const Editorial = () => {
           768: { slidesPerView: 2.2, spaceBetween: 20 },
           1024: { slidesPerView: 2.8, spaceBetween: 30 }, // desktop: 3 kartu
         }}>
-        {data.map((item, index) => (
+        {data.map((item: any, index: any) => (
           <div className="px-5 md:px-10 lg:px-20">
             <SwiperSlide key={index}>
               <div>
                 <div className="rounded-md border-2 border-[#144470]">
                   <div className="">
-                    <img src={item.image} alt="" className="w-full h-48" />
+                    <img src={item.image_url} alt="" className="w-full h-48" />
                   </div>
 
                   <div className="px-2 py-3">
                     <h3 className="font-bold text-xl mb-3 mt-2">{item.title}</h3>
-                    <p className="text-sm mb-4">{truncateText(item.desc, index)}</p>
+                    <p className="text-sm mb-4">{truncateText(item.description, index)}</p>
 
                     <div className="flex items-center justify-between">
                       <button onClick={() => toggleExpand(index)} className="font-semibold text-sm underline underline-offset-2">
