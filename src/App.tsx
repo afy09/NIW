@@ -9,6 +9,7 @@ import RouteGuard from "./utils/RouteGuard";
 import DashboardLayout from "./LandingPageUdin/Pages/dashboard/page-dashboard";
 import TambahNews from "./LandingPageUdin/Pages/dashboard/news/tambah-news";
 import TambahKategori from "./LandingPageUdin/Pages/dashboard/news/tambahkategori";
+import DetailEditorial from "./LandingPageUdin/Components/Editorial/detaileditorial";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" element={<LandingPageUdin />} />
         <Route path="/pengaduan" element={<Pengaduan />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/detail-editorial/:id" element={<DetailEditorial />} />
 
         {/* ✅ Protected dashboard with layout and nested routes */}
         <Route

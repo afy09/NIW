@@ -5,6 +5,7 @@ import axios from "axios";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../Program/index.css";
+import { Link } from "react-router-dom";
 
 type NewsItem = {
   id: number;
@@ -26,6 +27,10 @@ const Editorial = () => {
   const truncateText = (text: string, index: number) => {
     if (expanded === index) return text;
     return text?.length > 80 ? text?.substring(0, 80) + "..." : text;
+  };
+  const truncateTextTitle = (text: string, index: number) => {
+    if (expanded === index) return text;
+    return text?.length > 20 ? text?.substring(0, 20) + "..." : text;
   };
 
   useEffect(() => {
@@ -78,13 +83,15 @@ const Editorial = () => {
                   </div>
 
                   <div className="px-2 py-3">
-                    <h3 className="font-bold text-xl mb-3 mt-2">{item.title}</h3>
+                    <h3 className="font-bold text-xl mb-3 mt-2">{truncateTextTitle(item.title, index)}</h3>
                     <p className="text-sm mb-4">{truncateText(item.description, index)}</p>
 
                     <div className="flex items-center justify-between">
-                      <button onClick={() => toggleExpand(index)} className="font-semibold text-sm underline underline-offset-2">
-                        {expanded === index ? "Tutup" : "Selengkapnya →"}
-                      </button>
+                      <Link to={`/detail-editorial/${item.id}`}>
+                        <button onClick={() => toggleExpand(index)} className="font-semibold text-sm underline underline-offset-2">
+                          {expanded === index ? "Tutup" : "Selengkapnya →"}
+                        </button>
+                      </Link>
 
                       <div className="text-[#cfa84d] italic">{new Date(item.created_at).toLocaleDateString()}</div>
                     </div>
