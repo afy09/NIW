@@ -24,10 +24,6 @@ const Editorial = () => {
     setExpanded(expanded === index ? null : index);
   };
 
-  const truncateText = (text: string, index: number) => {
-    if (expanded === index) return text;
-    return text?.length > 80 ? text?.substring(0, 80) + "..." : text;
-  };
   const truncateTextTitle = (text: string, index: number) => {
     if (expanded === index) return text;
     return text?.length > 20 ? text?.substring(0, 20) + "..." : text;
@@ -44,6 +40,13 @@ const Editorial = () => {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  function truncateHTML(html: string, maxLength: number): string {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    const text = div.textContent || div.innerText || "";
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  }
 
   if (loading) return <div className="p-5">Memuat data editorial...</div>;
 
@@ -84,7 +87,13 @@ const Editorial = () => {
 
                   <div className="px-2 py-3">
                     <h3 className="font-bold text-xl mb-3 mt-2">{truncateTextTitle(item.title, index)}</h3>
-                    <p className="text-sm mb-4">{truncateText(item.description, index)}</p>
+
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: truncateHTML(item?.description || "", 80),
+                      }}
+                      className="text-sm mb-4"
+                    />
 
                     <div className="flex items-center justify-between">
                       <Link to={`/detail-editorial/${item.id}`}>

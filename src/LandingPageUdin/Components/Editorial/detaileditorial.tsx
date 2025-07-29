@@ -37,7 +37,7 @@ const DetailEditorial: React.FC = () => {
       <div className="flex-1">
         <span className="border bg-blue-950 text-white px-5 py-1 text-sm rounded-lg">{news?.category?.name || "Berita"}</span>
         <h1 className="text-3xl lg:text-4xl font-bold mt-4 leading-snug">{news?.title}</h1>
-        <div className="flex items-center text-gray-500 gap-4 mt-2 ">
+        <div className="flex flex-wrap items-center text-gray-500 gap-4 mt-2 ">
           <div className="flex items-center gap-2">
             <FaUserAlt />
             {news?.user?.name}
@@ -46,13 +46,13 @@ const DetailEditorial: React.FC = () => {
             <HiCalendarDateRange />
             {new Date(news?.created_at).toLocaleDateString("id-ID")}
           </div>
-          <div className="flex items-center gap-4 mt-2">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4 ">
+            {/* <div className="flex items-center gap-2">
               <FaShareAlt />
               <a href={`https://wa.me/?text=${encodeURIComponent(news.title + " - " + shareUrl)}`} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">
                 Share
               </a>
-            </div>
+            </div> */}
 
             <div
               onClick={() => {
@@ -85,6 +85,7 @@ const DetailEditorial: React.FC = () => {
                 <div className="text-sm w-full">
                   <h3 className="font-semibold line-clamp-2">{item?.title}</h3>
                   <p className="text-gray-500 text-xs line-clamp-1">{item?.description?.replace(/<[^>]+>/g, "").slice(0, 40)}...</p>
+
                   <p className="text-xs text-gray-400 mt-1">{new Date(item?.created_at).toLocaleDateString("id-ID")}</p>
                 </div>
               </div>

@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "./style.css";
 const IoArrowBack = require("react-icons/io5").IoArrowBack;
 
 const NewsDetail = () => {
@@ -15,6 +18,9 @@ const NewsDetail = () => {
   const [image, setImage] = useState<File | null>(null);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [modules, setModules] = useState<any>(null);
+
+  const quillRef = useRef<ReactQuill | null>(null);
 
   const token = document.cookie
     .split("; ")
@@ -102,6 +108,64 @@ const NewsDetail = () => {
     }
   };
 
+  useEffect(() => {
+    const imageHandler = () => {
+      const editor = quillRef.current?.getEditor();
+      if (!editor) {
+        console.warn("Editor belum siap!");
+        return;
+      }
+
+      const input = document.createElement("input");
+      input.setAttribute("type", "file");
+      input.setAttribute("accept", "image/*");
+      input.click();
+
+      input.onchange = async () => {
+        const file = input.files?.[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        const token = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("token="))
+          ?.split("=")[1];
+
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/upload-description-image`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          const range = editor.getSelection();
+          if (range) {
+            editor.insertEmbed(range.index, "image", res.data.url);
+          }
+        } catch (err) {
+          console.error("Upload gagal:", err);
+        }
+      };
+    };
+
+    // Set modules setelah komponen mount
+    setModules({
+      toolbar: {
+        container: [[{ header: [1, 2, false] }], ["bold", "italic", "underline", "strike"], [{ list: "ordered" }, { list: "bullet" }], ["link", "image"], ["clean"]],
+        handlers: {
+          image: imageHandler,
+        },
+      },
+    });
+  }, []);
+
+  const formats = ["header", "bold", "italic", "underline", "strike", "list", "bullet", "link", "image"];
+
+  const isFormValid = title && description && image && categoryId;
+
   if (loading) return <div className="p-4">Memuat detail berita...</div>;
   if (!news) return <div className="p-4 text-red-500">Berita tidak ditemukan.</div>;
 
@@ -136,7 +200,7 @@ const NewsDetail = () => {
 
         <div>
           <label className="block font-semibold">Deskripsi</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border px-3 py-2 rounded" />
+          {modules && <ReactQuill ref={quillRef} theme="snow" value={description} onChange={setDescription} modules={modules} formats={formats} />}
         </div>
 
         <div>

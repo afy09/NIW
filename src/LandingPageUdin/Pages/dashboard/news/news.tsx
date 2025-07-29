@@ -16,6 +16,13 @@ const News = () => {
       });
   }, []);
 
+  function truncateHTML(html: string, maxLength: number): string {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    const text = div.textContent || div.innerText || "";
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  }
+
   return (
     <div className="overflow-x-auto mt-7">
       <div className="flex justify-between items-center mb-4">
@@ -49,7 +56,14 @@ const News = () => {
                 <img src={item.image_url} alt={item.title} className="w-20 h-16 object-cover rounded" />
               </td>
               <td className="p-2">{item.category?.name ?? "-"}</td>
-              <td className="p-2">{item.description?.length > 5 ? item.description.slice(0, 5) + "..." : item.description}</td>
+              <td className="p-2">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: truncateHTML(item?.description || "", 10),
+                  }}
+                />
+              </td>
+
               <td className="p-2">{new Date(item.created_at).toLocaleDateString()}</td>
 
               <td className="p-2 text-blue-600">

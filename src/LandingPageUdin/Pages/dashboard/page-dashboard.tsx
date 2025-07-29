@@ -24,7 +24,7 @@ const DashboardLayout = () => {
           .find((row) => row.startsWith("token="))
           ?.split("=")[1];
 
-        const res = await fetch("https://niw.kopdesmerahputih.id/api/profile", {
+        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
             Accept: "application/json",
@@ -36,7 +36,7 @@ const DashboardLayout = () => {
         const data = await res.json();
         setProfile({
           name: data.name,
-          photo: `https://niw.kopdesmerahputih.id/storage/${data.photo}`,
+          photo: `${process.env.REACT_APP_API_BASE_URL}/storage/${data.photo}`,
         });
       } catch (err) {
         console.error("Gagal fetch profile:", err);

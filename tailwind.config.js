@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  safelist: ["ql-container", "ql-editor", "ql-toolbar"],
   theme: {
     extend: {
       keyframes: {
